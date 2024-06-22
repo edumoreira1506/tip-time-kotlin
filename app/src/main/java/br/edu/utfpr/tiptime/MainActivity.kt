@@ -21,11 +21,13 @@ class MainActivity : AppCompatActivity() {
         binding.calculateButton.setOnClickListener {
             onCalculateButtonClick()
         }
+
+        binding.tipResult.text = getString(R.string.tip_amount, "-")
     }
 
     private fun onCalculateButtonClick() {
         val costOfServiceString = binding.costOfService.text.toString()
-        val costOfServiceDouble = costOfServiceString.toDouble()
+        val costOfServiceDouble = costOfServiceString.toDoubleOrNull() ?: return
 
         val selectedId = binding.tipOption.checkedRadioButtonId
         val tipPercentage = when (selectedId) {
